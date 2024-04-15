@@ -4,6 +4,19 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <main className={styles.main}>
+      <header>
+        <h1>
+          Stundartafla 
+        </h1>
+        <p>Flokkaðu verkefni dagsins!</p>
+        <div >
+          <ul>
+            <li><a href="frontpage">Forsíða</a></li>
+            <li><a href="calander">Dagatal</a></li>
+            <li><a href="mypage">Mín síða</a></li>
+          </ul>
+        </div>
+      </header>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -90,6 +103,15 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <footer>
+        <div>
+          <p>Kíktu við hjá okkur:</p>
+          Nördakjallarinn<br>
+          107, Reykjavík<br>
+          Iceland
+        </div>
+
+      </footer>
     </main>
   );
 }
