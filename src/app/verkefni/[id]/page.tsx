@@ -1,7 +1,6 @@
-import { GetServerSideProps, Metadata } from "next";
+
 import { getAllPosts, getPostByID } from "@/lib/api";
-import { Post } from "@/interfaces/post";
-import { notFound } from "next/navigation";
+
 
 
 

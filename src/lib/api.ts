@@ -53,12 +53,21 @@ export async function getPostByID(id: string): Promise<Post> {
 }
 
 export async function getTypeByID(id:string):Promise<Task_type> {
+    if(!id){
+        console.error('No ID provided to getTaskByID')
+    }
+
     try{
         const response = await fetch(`${API_BASE_URL}/flokkar/${id}`);
         if(!response.ok){
-            throw new Error('No Network Response')
+            if (response.status === 404) {
+                console.error('Post not found:', id);
+            }
+            const errorBody = await response.text();
+            throw new Error(`HTTP error ${response.status}: ${errorBody}`);
         }
-        return await response.json();
+        const type: Task_type = await response.json();
+        return type;
     } catch(error){
         console.error('Error fetching data:', error);
         throw error;
