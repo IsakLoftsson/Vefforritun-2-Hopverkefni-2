@@ -29,14 +29,24 @@ export async function getAllTypes():Promise<Task_type[]>{
     }
 }
 
-export async function getPostByID(id:string):Promise<Post> {
-    try{
+export async function getPostByID(id: string): Promise<Post> {
+
+    if(!id){
+        console.error('No ID provided to getPostByID')
+    }
+
+    try {
         const response = await fetch(`${API_BASE_URL}/verkefni/${id}`);
-        if(!response.ok){
-            throw new Error('No Network Response')
+        if (!response.ok) {
+            if (response.status === 404) {
+                console.error('Post not found:', id);
+            }
+            const errorBody = await response.text();
+            throw new Error(`HTTP error ${response.status}: ${errorBody}`);
         }
-        return await response.json();
-    } catch(error){
+        const post: Post = await response.json();
+        return post;
+    } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
