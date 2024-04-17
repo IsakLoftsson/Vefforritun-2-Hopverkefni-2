@@ -1,13 +1,25 @@
+'use client'
+import NotFound from "@/app/not-found";
+import { Task_type } from "@/interfaces/task_type";
 import { getTypeByID } from "@/lib/api";
+import { useEffect, useState } from "react";
 
 
 export default async function Flokkar({ params }: { params: { id: string } }) {
-    const flokkur = getTypeByID(params.id);
+    const [flokkur , setFlokkur] = useState<Task_type | null>(null);
   
-    if (!flokkur) {
-      
-      return <p>Faild</p>
-    }
+    useEffect(() => {
+      const fetchVerkefni = async () => {
+          const fetchedVerkefni = await getTypeByID(params.id);
+          setFlokkur(fetchedVerkefni);
+      };
+
+      fetchVerkefni().catch(console.error);
+  }, [params.id]);
+
+  if (flokkur === null) {
+      return NotFound();
+  }
   
   
     return (

@@ -1,26 +1,33 @@
+'use client'
+import React, { useEffect, useState } from 'react';
+import { getPostByID } from '@/lib/api';
+import { Post } from '@/interfaces/post';
+import NotFound from '@/app/not-found';
 
-import { getAllPosts, getPostByID } from "@/lib/api";
+export default function Verkefni({ params }: { params: { id: string } }) {
+    const [verkefni, setVerkefni] = useState<Post | null>(null);
 
+    useEffect(() => {
+        const fetchVerkefni = async () => {
+            const fetchedVerkefni = await getPostByID(params.id);
+            setVerkefni(fetchedVerkefni);
+        };
 
+        fetchVerkefni().catch(console.error);
+    }, [params.id]);
 
-
-export default async function Verkefni({ params }: { params: { id: string } }) {
-    const verkefni = getPostByID(params.id);
-  
-    if (!verkefni) {
-      
-      return <p>Faild</p>
+    if (verkefni === null) {
+        return NotFound();
     }
-  
-  
+
     return (
         <div>
-            <p>name: {(await verkefni).name}</p>
-            <p>description: {(await verkefni).description}</p>
-            <p>date: {(await verkefni).date}</p>
-            <p>task type: {(await verkefni).task_type.name}</p>
-            <p>task tag: {(await verkefni).task_tag.name}</p>
+            <p>Name: {verkefni.name}</p>
+            <p>Description: {verkefni.description}</p>
+            <p>Date: {verkefni.date}</p>
+            <p>Task Type: {verkefni.task_type.name}</p>
+            <p>Task Tag: {verkefni.task_tag.name}</p>
         </div>
     );
-  }
+}
   
