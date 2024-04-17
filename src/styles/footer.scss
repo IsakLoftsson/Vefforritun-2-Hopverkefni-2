@@ -1,0 +1,9 @@
+footer{
+    display: flex;
+    justify-content: center;
+    gap: $spacing;
+    border-top: $border-large solid;
+    background-color: $dark-color;
+    color: $border-color;
+    margin-top: auto;
+}

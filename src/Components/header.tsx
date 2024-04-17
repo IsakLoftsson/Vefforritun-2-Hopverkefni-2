@@ -9,13 +9,14 @@ export default function Header(){
                 Stundartafla 
               </h1>
               <p>Flokkaðu verkefni dagsins!</p>
-              <div >
+              <nav >
                 <ul>
-                  <li><a href="frontpage">Forsíða</a></li>
-                  <li><a href="calander">Dagatal</a></li>
-                  <li><a href="mypage">Mín síða</a></li>
+                  <li><Link href="/">Forsíða</Link></li>
+                  <li><Link href="/verkefni">Verkefni</Link></li>
+                  <li><Link href="/flokkar">Flokkar</Link></li>
+                  <li><Link href="mypage">Mín síða</Link></li>
                 </ul>
-              </div>
+              </nav>
             </header>
         </>
     )
