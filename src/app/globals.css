@@ -67,4 +67,17 @@ footer {
   margin-top: auto;
 }
 
+.verkefnacard {
+  border: 1px solid #e4d5b7;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.verkefniupprodun {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 /*# sourceMappingURL=globals.css.map */

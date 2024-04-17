@@ -1,0 +1,12 @@
+.verkefnacard {
+    border: 1px solid $border-color;
+    border-radius: $border-large;
+    padding: $spacing;
+    margin-bottom: $spacing;
+}
+
+.verkefniupprodun {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing;
+}

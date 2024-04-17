@@ -29,10 +29,10 @@ export default function Page() {
     }
 
     return (
-        <div>
-            <h1>Data from My API</h1>
+        <div className='verkefniupprodun'>
+            <h1>Verkefni</h1>
             {posts.map(post => ( 
-                <div key={post.id}>
+                <div className='verkefnacard' key={post.id}>
                     <p>Name: {post.name}</p>
                     <p>Description: {post.description}</p>
                     <p>Date: {post.date}</p>
