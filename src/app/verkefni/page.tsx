@@ -6,13 +6,13 @@ import { Post } from '@/interfaces/post';
 import { getAllPosts } from '../../lib/api';
 
 export default function Page() {
-    const [data, setData] = useState<Post[] | null>(null);
+    const [posts, setPosts] = useState<Post[] | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getAllPosts()
             .then(posts => {
-                setData(posts);
+                setPosts(posts);
                 setLoading(false);
             })
             .catch(error => {
@@ -24,14 +24,22 @@ export default function Page() {
     if (loading) {
         return <p>Loading...</p>;
     }
-    if (!data || data.length === 0) {
+    if (!posts || posts.length === 0) {
         return <p>No data found</p>;
     }
 
     return (
         <div>
             <h1>Data from My API</h1>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            {posts.map(post => ( 
+                <div key={post.id}>
+                    <p>Name: {post.name}</p>
+                    <p>Description: {post.description}</p>
+                    <p>Date: {post.date}</p>
+                    <p>Task Type: {post.task_type.name}</p>
+                    <p>Task Tag: {post.task_tag.name}</p>
+                </div>
+            ))}
         </div>
     );
 };

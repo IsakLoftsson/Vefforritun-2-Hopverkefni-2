@@ -7,13 +7,13 @@ import { Task_type } from '@/interfaces/task_type';
 
 
 export default function Page() {
-    const [data, setData] = useState<Task_type[] | null>(null);
+    const [types, setTypes] = useState<Task_type[] | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getAllTypes()
             .then(types => {
-                setData(types);
+                setTypes(types);
                 setLoading(false);
             })
             .catch(error => {
@@ -25,14 +25,18 @@ export default function Page() {
     if (loading) {
         return <p>Loading...</p>;
     }
-    if (!data || data.length === 0) {
+    if (!types || types.length === 0) {
         return <p>No data found</p>;
     }
 
     return (
         <div>
-            <h1>Data from My API</h1>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <h1>Flokkar</h1>
+            {types.map(type => ( // Proper usage of map to render JSX
+                <div key={type.id}> {/* Ensure each post has a unique 'id' property */}
+                    <p>{type.name}</p>
+                </div>
+            ))}
         </div>
     );
 };
