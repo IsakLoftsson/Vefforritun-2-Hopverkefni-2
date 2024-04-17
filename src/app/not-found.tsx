@@ -1,5 +1,4 @@
 import Link from "next/link";
-import varibles from "../styles/variables.module.scss"
 
 export default function NotFound() {
     return (

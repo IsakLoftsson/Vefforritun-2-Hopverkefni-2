@@ -29,7 +29,7 @@ export async function getAllTypes():Promise<Task_type[]>{
     }
 }
 
-export async function getPostByID(id: string): Promise<Post> {
+export async function getPostByID(id: string): Promise<Post | null> {
 
     if(!id){
         console.error('No ID provided to getPostByID')
@@ -39,10 +39,15 @@ export async function getPostByID(id: string): Promise<Post> {
         const response = await fetch(`${API_BASE_URL}/verkefni/${id}`);
         if (!response.ok) {
             if (response.status === 404) {
-                console.error('Post not found:', id);
+                const errorBody = await response.json();
+                console.error(`Post not found: ${errorBody.error}`);
+
+                return null;
             }
-            const errorBody = await response.text();
-            throw new Error(`HTTP error ${response.status}: ${errorBody}`);
+            else {
+                const errorBody = await response.text();
+                throw new Error(`HTTP error ${response.status}: ${errorBody}`);
+            }
         }
         const post: Post = await response.json();
         return post;
@@ -52,7 +57,7 @@ export async function getPostByID(id: string): Promise<Post> {
     }
 }
 
-export async function getTypeByID(id:string):Promise<Task_type> {
+export async function getTypeByID(id:string):Promise<Task_type | null> {
     if(!id){
         console.error('No ID provided to getTaskByID')
     }
@@ -61,10 +66,15 @@ export async function getTypeByID(id:string):Promise<Task_type> {
         const response = await fetch(`${API_BASE_URL}/flokkar/${id}`);
         if(!response.ok){
             if (response.status === 404) {
-                console.error('Post not found:', id);
+                const errorBody = await response.json();
+                console.error(`Type not found: ${errorBody.error}`);
+
+                return null;
             }
-            const errorBody = await response.text();
-            throw new Error(`HTTP error ${response.status}: ${errorBody}`);
+            else {
+                const errorBody = await response.text();
+                throw new Error(`HTTP error ${response.status}: ${errorBody}`);
+            }
         }
         const type: Task_type = await response.json();
         return type;
