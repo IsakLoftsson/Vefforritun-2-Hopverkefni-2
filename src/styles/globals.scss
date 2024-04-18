@@ -1,15 +1,18 @@
-$primary-color: #0c0202;
+$primary-color: #0B0014;
 $vertical-space: 2rem;
 $spacing: 1rem;
 $border-large: 0.5rem;
-$dark-color: #2A0134;
-$light-color: #fff0db;
-$border-color: #e4d5b7;
+$dark-color: #c3c2d4;
+$light-color: #fff0d0;
+$border-color: #6c1326;
+$text-color: #C16200;
+
 $gutter: 2rem;
 $max-width: 1400px;
 
 
 body {
+  
   font-family: Arial, sans-serif;
   font-size: 1rem;
   color: $primary-color;

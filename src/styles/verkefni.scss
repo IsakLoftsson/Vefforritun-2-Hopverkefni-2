@@ -1,3 +1,9 @@
+.verkefni {
+    h1 {
+        text-align: center;
+    }
+}
+
 .verkefnacard {
     border: 1px solid $border-color;
     border-radius: $border-large;
@@ -7,6 +13,9 @@
 
 .verkefniupprodun {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: $spacing;
+    padding: $spacing;
+    max-width: $max-width;
+    margin: 0 auto;
 }

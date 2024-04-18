@@ -29,8 +29,9 @@ export default function Page() {
     }
 
     return (
-        <div className='verkefniupprodun'>
+        <div className='verkefni'>
             <h1>Verkefni</h1>
+            <div className='verkefniupprodun'>
             {posts.map(post => ( 
                 <div className='verkefnacard' key={post.id}>
                     <p>Name: {post.name}</p>
@@ -40,6 +41,7 @@ export default function Page() {
                     <p>Task Tag: {post.task_tag.name}</p>
                 </div>
             ))}
+            </div>
         </div>
     );
 };
