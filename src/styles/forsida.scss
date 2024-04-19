@@ -1,0 +1,22 @@
+.forsida {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+    border: 3px solid $orange-color;
+    border-radius: $border-large;
+
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.15rem;
+    }
+
+
+}

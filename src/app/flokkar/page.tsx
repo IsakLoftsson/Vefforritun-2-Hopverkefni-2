@@ -30,7 +30,7 @@ export default function Page() {
     }
 
     return (
-        <div>
+        <div className='flokkar'>
             <h1>Flokkar</h1>
             {types.map(type => ( // Proper usage of map to render JSX
                 <div key={type.id}> {/* Ensure each post has a unique 'id' property */}

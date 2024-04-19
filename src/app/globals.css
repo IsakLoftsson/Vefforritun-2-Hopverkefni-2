@@ -30,10 +30,16 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
   border-bottom: 0.5rem solid;
   background-color: #c3c2d4;
   color: #6c1326;
+}
+header h1 {
+  margin-bottom: 0;
+  font-size: 2.5rem;
+}
+header p {
+  margin-top: 0;
 }
 header nav {
   width: 100%;
@@ -66,13 +72,22 @@ footer {
   color: #6c1326;
   margin-top: auto;
 }
+footer div {
+  text-align: center;
+  font-weight: 500;
+}
+footer div p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
 
 .verkefni h1 {
   text-align: center;
 }
 
 .verkefnacard {
-  border: 1px solid #6c1326;
+  border: 1.5px solid #C16200;
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -85,6 +100,37 @@ footer {
   padding: 1rem;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.flokkar h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+.flokkar p {
+  text-align: center;
+  font-size: 1.15rem;
+  border: 1.5px solid #C16200;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.forsida {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  border: 3px solid #C16200;
+  border-radius: 0.5rem;
+}
+.forsida h1 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+.forsida p {
+  text-align: center;
+  font-size: 1.15rem;
 }
 
 /*# sourceMappingURL=globals.css.map */
