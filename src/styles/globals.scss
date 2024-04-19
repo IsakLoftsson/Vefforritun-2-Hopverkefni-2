@@ -5,7 +5,7 @@ $border-large: 0.5rem;
 $dark-color: #c3c2d4;
 $light-color: #fff0d0;
 $border-color: #6c1326;
-$text-color: #C16200;
+$orange-color: #C16200;
 
 $gutter: 2rem;
 $max-width: 1400px;
@@ -41,3 +41,5 @@ main{
 @import 'header';
 @import 'footer';
 @import 'verkefni';
+@import 'flokkar';
+@import 'forsida';

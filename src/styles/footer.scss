@@ -6,4 +6,14 @@ footer{
     background-color: $dark-color;
     color: $border-color;
     margin-top: auto;
+    div {
+        text-align: center;
+        font-weight: 500;
+        p { 
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+    }
+    
 }
