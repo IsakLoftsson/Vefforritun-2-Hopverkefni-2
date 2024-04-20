@@ -115,7 +115,6 @@ export async function loginUser(credentials: { username: string, password: strin
             },
             body: JSON.stringify(credentials)
         });
-
         if (!response.ok) {
             const errorBody = await response.json();
             throw new Error(errorBody.error);
