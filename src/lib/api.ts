@@ -1,7 +1,8 @@
 import { Post } from "@/interfaces/post";
 import { Task_type } from "@/interfaces/task_type";
 
-const API_BASE_URL = 'https://vefforritun-2-hopverkefni-1.up.railway.app';
+// const API_BASE_URL = 'https://vefforritun-2-hopverkefni-1.up.railway.app';
+const API_BASE_URL = 'https://vefforritun-2-hopverkefni-2-api-production.up.railway.app';
 
 export async function getAllPosts():Promise<Post[]>{
     try{
@@ -57,13 +58,13 @@ export async function getPostByID(id: string): Promise<Post | null> {
     }
 }
 
-export async function getTypeByID(id:string):Promise<Task_type | null> {
-    if(!id){
-        console.error('No ID provided to getTaskByID')
+export async function getTypeBySlug(slug:string):Promise<Task_type | null> {
+    if(!slug){
+        console.error('No Slug provided to getTaskBySlug')
     }
 
     try{
-        const response = await fetch(`${API_BASE_URL}/flokkar/${id}`);
+        const response = await fetch(`${API_BASE_URL}/flokkar/${slug}`);
         if(!response.ok){
             if (response.status === 404) {
                 const errorBody = await response.json();

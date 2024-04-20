@@ -1,16 +1,16 @@
 'use client'
 import NotFound from "@/app/not-found";
 import { Task_type } from "@/interfaces/task_type";
-import { getTypeByID } from "@/lib/api";
+import { getTypeBySlug } from "@/lib/api";
 import { useEffect, useState } from "react";
 
 
-export default async function Flokkar({ params }: { params: { id: string } }) {
+export default function Flokkar({ params }: { params: { id: string } }) {
     const [flokkur , setFlokkur] = useState<Task_type | null>(null);
   
     useEffect(() => {
       const fetchVerkefni = async () => {
-          const fetchedVerkefni = await getTypeByID(params.id);
+          const fetchedVerkefni = await getTypeBySlug(params.id);
           setFlokkur(fetchedVerkefni);
       };
 
@@ -24,7 +24,7 @@ export default async function Flokkar({ params }: { params: { id: string } }) {
   
     return (
         <div>
-            <p>name: {(await flokkur).name}</p>
+            <p>name: {flokkur.name}</p>
         </div>
     );
   }
