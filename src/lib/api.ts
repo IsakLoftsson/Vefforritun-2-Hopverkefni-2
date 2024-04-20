@@ -84,3 +84,47 @@ export async function getTypeBySlug(slug:string):Promise<Task_type | null> {
         throw error;
     }
 }
+
+export async function loginUser(credentials: { username: string, password: string }): Promise<void> {
+    console.log(credentials)
+    console.log('username:', credentials.username, ', password:', credentials.password)
+    try {
+        console.log('credentials:', credentials, ', trying to login')
+        const response = await fetch(`${API_BASE_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials)
+        });
+        console.log('credentials 2:', credentials, ', trying to login')
+        if (!response.ok) {
+            const errorBody = await response.json();
+            throw new Error(errorBody.error);
+        }
+    } catch (error) {
+        console.log('credentials failed:', credentials)
+        console.error('Error during login:', error);
+        throw error;
+    }
+}
+
+export async function registerUser(credentials: { username: string, password: string }): Promise<void> {
+    try {
+        const response = await fetch(`${API_BASE_URL}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials)
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.json();
+            throw new Error(errorBody.error);
+        }
+    } catch (error) {
+        console.error('Error during registration:', error);
+        throw error;
+    }
+}

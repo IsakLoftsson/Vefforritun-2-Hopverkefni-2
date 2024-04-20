@@ -14,7 +14,7 @@ export default function Header(){
                   <li><Link href="/">Forsíða</Link></li>
                   <li><Link href="/verkefni">Verkefni</Link></li>
                   <li><Link href="/flokkar">Flokkar</Link></li>
-                  <li><Link href="mypage">Mín síða</Link></li>
+                  <li><Link href="/innskraning">Innskráning</Link></li>
                 </ul>
               </nav>
             </header>
