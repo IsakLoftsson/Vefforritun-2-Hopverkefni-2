@@ -147,25 +147,25 @@ export async function registerUser(credentials: { username: string, password: st
     }
 }
 
-// Example function using the token in a GET request
-export async function fetchDataWithToken(token: string): Promise<any> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/some-endpoint`, {
-            method: 'GET',
+export async function createFlokkur(nameOfFlokkur: string):Promise<void[]>{
+    try{
+        // const requestData = {"name": nameOfFlokkur};
+        const requestData = { "name": "Leiklist" };
+        console.log('localStorage.getItem(token):', localStorage.getItem('token'));     
+        const response = await fetch(`${API_BASE_URL}/flokkar`, {
+            method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`
-            }
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
         });
-
-        if (!response.ok) {
-            const errorBody = await response.json();
-            throw new Error(errorBody.error);
+        if(!response.ok){
+            throw new Error('No Network Response')
         }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching data with token:', error);
+        return await response.json();
+    } catch(error){
+        console.error('Error fetching data:', error);
         throw error;
     }
 }
