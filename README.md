@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Vef2-2024-h2
 
-## Getting Started
+Þetta er hópverkefni 2 í vefforitun 2 vor önn 2024.
+Verkefnið er framendi ofaná bakenda sem var gerður í hópverkefni 1,
+bakendinn er mjöf einnfaldur vefþjónn sem við náðum ekki allveg að klára
+svo við þurfum að uppfæra hann. í grunninn er þetta einhverskonar "ámingarsíða"
+hægt er að búa til verkefni sem þurfa að klárast á ákveðnum tíma, hugsað til að einfalda skipulag.
+Bakendi var ókláraður og kemur verkefni hja öllum users upp sama hvað user er loggaður inn höfðum ekki tíma í að laga það
+en flest öll önnur virkni ætti að vera í lagi fyrir utan myndavirkni þar sem hún var ekki til staðar í bakenda
 
-First, run the development server:
+###
+yfirferð notið
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Username: admin
+Password: 123
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Nemendur
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Gísli Már Guðmundsson
+Ísak loftsson
+Lilja Örk
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Vefsíðan
 
-## Learn More
+### Header
 
-To learn more about Next.js, take a look at the following resources:
+mjög einfaldur header með Titli hjá síðunni og nav til að komast á milli mismundani síða.
+allar síður innihalda header líka 404.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Footer
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Footer með staðsetningu
+Sama með header þá innihalda alla síður footer lika 404.
 
-## Deploy on Vercel
+### Forsíðan
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+bara mjög einföld forsíða með href á næstu skref
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Verkefni
+
+Hér er kallað í vefþjóninn og öll verkefni sótt með get method á bakenda og birt
+
+#### Slug/id
+
+ferð inn í ákveðið verkefni hægt að uppfæra og eyða með patch og delete gegnum bakenda
+
+### Nýtt Verkefni
+
+Hér er hægt að bæta við verkefnum gegnum post method í gegnum bakenda
+
+### Flokkar 
+
+Hér eru allir flokkar birtir með get request frá bakenda
+
+#### Slug/id
+
+ferð inn í ákveðið flokk hægt að uppfæra og eyða með patch og delete gegnum bakenda
+
+### Notendur
+
+Basic notenda síða ef þú ert ekki skráður inn tekið þig á innskráningu
+
+### Innskráning
+
+post request til að skrá inn user eða búa til user
+
+### css
+
+Gert með sass configureað í package.json 
+margar sass skrár sem kallað er í frá globals.scss
+þegar npm run sass er keyrt er allt í globas.scss skrifað í globals.css
