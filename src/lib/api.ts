@@ -9,7 +9,6 @@ const API_BASE_URL = 'https://vefforritun-2-hopverkefni-2-api-production.up.rail
 
 export async function getAllUsers():Promise<User[]>{
     try{
-        console.log('localStorage.getItem(token):', localStorage.getItem('token'));
         const response = await fetch(`${API_BASE_URL}/users`, {
             method: 'GET',
             headers: {

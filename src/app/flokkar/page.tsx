@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import {  getAllTypes } from '../../lib/api';
 import { Task_type } from '@/interfaces/task_type';
-
+import Link from "next/link";
 
 export default function Page() {
     const [types, setTypes] = useState<Task_type[] | null>(null);
@@ -32,10 +32,10 @@ export default function Page() {
     return (
         <div className='flokkar'>
             <h1>Flokkar</h1>
-            {types.map(type => ( // Proper usage of map to render JSX
-                <div key={type.id}> {/* Ensure each post has a unique 'id' property */}
-                    <p>{type.name}</p>
-                </div>
+            {types.map(type => (
+                <div key={type.id}>
+                <p><Link href={`/flokkar/${type.slug}`}>{type.name}</Link></p>
+            </div>
             ))}
         </div>
     );
