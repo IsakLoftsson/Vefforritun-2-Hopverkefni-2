@@ -202,19 +202,18 @@ export async function patchTypeBySlug(slug:string, name:string):Promise<void> {
     }
 }
 
-export async function deleteTypeBySlug(slug:string, name:string):Promise<void> {
+export async function deleteTypeBySlug(slug:string):Promise<void> {
     if(!slug){
         console.error('No Slug provided to getTaskBySlug')
     }
 
     try{
-        const response = await fetch(`${API_BASE_URL}/flokkar/${slug}` ,{
+        const response = await fetch(`${API_BASE_URL}/Verkefni/${slug}` ,{
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({name})
             }
         );
         if(!response.ok){
@@ -228,6 +227,65 @@ export async function deleteTypeBySlug(slug:string, name:string):Promise<void> {
             }
         }
     } catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+export async function deletePostBySlug(slug:string):Promise<void> {
+    if(!slug){
+        console.error('No Slug provided to getTaskBySlug')
+    }
+
+    try{
+        const response = await fetch(`${API_BASE_URL}/verkefni/${slug}` ,{
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            }
+            }
+        );
+        if(!response.ok){
+            if (response.status === 404) {
+                const errorBody = await response.json();
+                console.error(`Post not found: ${errorBody.error}`);
+            }
+            else {
+                const errorBody = await response.text();
+                throw new Error(`HTTP error ${response.status}: ${errorBody}`);
+            }
+        }
+    } catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+export async function patchPostBySlug(slug: string, data: { name: string; description: string;}): Promise<void> {
+    if (!slug) {
+        console.error('No Slug provided to patchPostBySlug');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/verkefni/${slug}`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: data.name,
+                description: data.description,
+            })
+        });
+
+        if (!response.ok) {
+            const errorBody = response.status === 404 ? await response.json() : await response.text();
+            throw new Error(`HTTP error ${response.status}: ${errorBody}`);
+        }
+    } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }

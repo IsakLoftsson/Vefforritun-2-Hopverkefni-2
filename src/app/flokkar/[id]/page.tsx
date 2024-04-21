@@ -39,10 +39,10 @@ const handleDelete = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     try {
-        await deleteTypeBySlug(params.id, name);
+        await deleteTypeBySlug(params.id);
 
     } catch (error) {
-        console.error('Failed to update:', error);
+        console.error('Failed to delete:', error);
     }
 }
   

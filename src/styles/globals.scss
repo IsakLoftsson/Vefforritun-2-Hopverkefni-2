@@ -20,6 +20,22 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  a:link { 
+    text-decoration: none; 
+    color: $primary-color;
+  } 
+  a:visited { 
+    text-decoration: none;
+    color: $primary-color;
+  } 
+  a:hover { 
+    text-decoration: none;
+    color: $primary-color;
+  } 
+  a:active { 
+    text-decoration: none;
+    color: $primary-color;
+  }
 }
 .wrapper{
   display: grid;
