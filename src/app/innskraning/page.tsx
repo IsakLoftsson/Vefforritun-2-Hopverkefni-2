@@ -11,7 +11,6 @@ export default function Login() {
     const [error, setError] = useState('');
 
     const handleLogin = async () => {
-        console.log('username:', username, ', password:', password)
         try {
             const login_token = await loginUser({ username, password });
             localStorage.setItem('token', login_token);
