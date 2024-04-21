@@ -170,3 +170,65 @@ export async function fetchDataWithToken(token: string): Promise<any> {
         throw error;
     }
 }
+
+export async function patchTypeBySlug(slug:string, name:string):Promise<void> {
+    if(!slug){
+        console.error('No Slug provided to getTaskBySlug')
+    }
+
+    try{
+        const response = await fetch(`${API_BASE_URL}/flokkar/${slug}` ,{
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name})
+            }
+        );
+        if(!response.ok){
+            if (response.status === 404) {
+                const errorBody = await response.json();
+                console.error(`Type not found: ${errorBody.error}`);
+            }
+            else {
+                const errorBody = await response.text();
+                throw new Error(`HTTP error ${response.status}: ${errorBody}`);
+            }
+        }
+    } catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+export async function deleteTypeBySlug(slug:string, name:string):Promise<void> {
+    if(!slug){
+        console.error('No Slug provided to getTaskBySlug')
+    }
+
+    try{
+        const response = await fetch(`${API_BASE_URL}/flokkar/${slug}` ,{
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name})
+            }
+        );
+        if(!response.ok){
+            if (response.status === 404) {
+                const errorBody = await response.json();
+                console.error(`Type not found: ${errorBody.error}`);
+            }
+            else {
+                const errorBody = await response.text();
+                throw new Error(`HTTP error ${response.status}: ${errorBody}`);
+            }
+        }
+    } catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
