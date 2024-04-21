@@ -14,7 +14,7 @@ export default function Login() {
         console.log('username:', username, ', password:', password)
         try {
             await loginUser({ username, password });
-            router.push('/'); // Fer aftur á heimasíðu eftir login
+            router.push('/verkefni');
         } catch (error) {
             setError('Innskráning tókst ekki. Vinsamlegast athugaðu hvort notandanafn og lykilorð séu rétt.');
         }
@@ -23,7 +23,7 @@ export default function Login() {
     const handleRegister = async () => {
         try {
             await registerUser({ username, password });
-            router.push('/'); // Fer aftur á heimasíðu eftir login
+            router.push('/verkefni');
         } catch (error) {
             setError('Tókst ekki að búa til aðgang. Notendanafn er tekið.');
         }

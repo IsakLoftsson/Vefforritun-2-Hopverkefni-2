@@ -1,5 +1,6 @@
 import { Post } from "@/interfaces/post";
 import { Task_type } from "@/interfaces/task_type";
+import { token } from "@/interfaces/login_token";
 
 // const API_BASE_URL = 'https://vefforritun-2-hopverkefni-1.up.railway.app';
 const API_BASE_URL = 'https://vefforritun-2-hopverkefni-2-api-production.up.railway.app';
@@ -85,11 +86,8 @@ export async function getTypeBySlug(slug:string):Promise<Task_type | null> {
     }
 }
 
-export async function loginUser(credentials: { username: string, password: string }): Promise<void> {
-    console.log(credentials)
-    console.log('username:', credentials.username, ', password:', credentials.password)
+export async function loginUser(credentials: { username: string, password: string }): Promise<string> {
     try {
-        console.log('credentials:', credentials, ', trying to login')
         const response = await fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
             headers: {
@@ -97,13 +95,14 @@ export async function loginUser(credentials: { username: string, password: strin
             },
             body: JSON.stringify(credentials)
         });
-        console.log('credentials 2:', credentials, ', trying to login')
+
         if (!response.ok) {
             const errorBody = await response.json();
             throw new Error(errorBody.error);
         }
+        const data = await response.json();
+        return data.token; // Return the token from the response
     } catch (error) {
-        console.log('credentials failed:', credentials)
         console.error('Error during login:', error);
         throw error;
     }
@@ -125,6 +124,29 @@ export async function registerUser(credentials: { username: string, password: st
         }
     } catch (error) {
         console.error('Error during registration:', error);
+        throw error;
+    }
+}
+
+// Example function using the token in a GET request
+export async function fetchDataWithToken(token: string): Promise<any> {
+    try {
+        const response = await fetch(`${API_BASE_URL}/some-endpoint`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.json();
+            throw new Error(errorBody.error);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data with token:', error);
         throw error;
     }
 }
