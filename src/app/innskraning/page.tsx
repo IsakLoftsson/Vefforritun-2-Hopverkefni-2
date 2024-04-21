@@ -13,7 +13,8 @@ export default function Login() {
     const handleLogin = async () => {
         console.log('username:', username, ', password:', password)
         try {
-            await loginUser({ username, password });
+            const login_token = await loginUser({ username, password });
+            localStorage.setItem('token', login_token);
             router.push('/verkefni');
         } catch (error) {
             setError('Innskráning tókst ekki. Vinsamlegast athugaðu hvort notandanafn og lykilorð séu rétt.');

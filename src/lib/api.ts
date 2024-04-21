@@ -1,9 +1,30 @@
 import { Post } from "@/interfaces/post";
+import { User } from "@/interfaces/user";
 import { Task_type } from "@/interfaces/task_type";
-import { token } from "@/interfaces/login_token";
+import { login_token } from "@/interfaces/login_token";
 
 // const API_BASE_URL = 'https://vefforritun-2-hopverkefni-1.up.railway.app';
 const API_BASE_URL = 'https://vefforritun-2-hopverkefni-2-api-production.up.railway.app';
+
+
+export async function getAllUsers():Promise<User[]>{
+    try{
+        console.log('localStorage.getItem(token):', localStorage.getItem('token'));
+        const response = await fetch(`${API_BASE_URL}/users`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        if(!response.ok){
+            throw new Error('No Network Response')
+        }
+        return await response.json();
+    } catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
 
 export async function getAllPosts():Promise<Post[]>{
     try{
