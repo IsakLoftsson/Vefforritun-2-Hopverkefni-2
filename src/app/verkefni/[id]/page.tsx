@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { getPostByID } from '@/lib/api';
 import { Post } from '@/interfaces/post';
 import NotFound from '@/app/not-found';
