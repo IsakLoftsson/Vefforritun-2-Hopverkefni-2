@@ -1,7 +1,7 @@
 'use client'
 import NotFound from "@/app/not-found";
 import { Task_type } from "@/interfaces/task_type";
-import { getTypeBySlug, patchTypeBySlug } from "@/lib/api";
+import { deleteTypeBySlug, getTypeBySlug, patchTypeBySlug } from "@/lib/api";
 import { FormEvent, MouseEvent, useEffect, useState } from "react";
 
 
@@ -35,8 +35,15 @@ export default function Flokkar({ params, }: { params: { id: string } }) {
     }
 };
 
-const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
+const handleDelete = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    try {
+        await deleteTypeBySlug(params.id, name);
+
+    } catch (error) {
+        console.error('Failed to update:', error);
+    }
 }
   
   
